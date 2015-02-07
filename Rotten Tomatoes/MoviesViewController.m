@@ -49,6 +49,7 @@
 }
 
 - (void)reloadMovies:(Boolean *)hasProgressHUD{
+    [self hideNetworkErrorStatusBar];
     NSString *apiKey = @"ed4tymgz3u9m72rq6tvg3y6p";
     NSString *rottenTomatoesURLString = [NSString stringWithFormat:@"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=%@", apiKey];
     NSURL *url = [NSURL URLWithString:rottenTomatoesURLString];
@@ -58,7 +59,6 @@
     }
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (data) {
-            [self hideNetworkErrorStatusBar];
             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             self.movies = responseDictionary[@"movies"];
             [self.tableView reloadData];

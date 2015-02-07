@@ -56,13 +56,18 @@
     if (hasProgressHUD) {
         [SVProgressHUD showWithStatus:(NSString *)@"Loading..."];
     }
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (data) {
+            [self hideNetworkErrorStatusBar];
             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             self.movies = responseDictionary[@"movies"];
             [self.tableView reloadData];
         } else {
-            [self handleError];
+            if (error) {
+                [self handleNetworkError];
+            } else {
+                [self handleOtherError];
+            }
         }
         if(hasProgressHUD) {
             [SVProgressHUD dismiss];
@@ -71,11 +76,22 @@
         }
         [self.refreshControl endRefreshing];
     }];
-    //[SVProgressHUD dismiss];
 }
 
-- (void)handleError {
+- (void)handleNetworkError {
+    [UIView animateWithDuration:0.25 animations:^{
+        self.networkErrorView.frame = CGRectMake(0,[UIApplication sharedApplication].statusBarFrame.size.height + self.navigationController.navigationBar.frame.size.height, 320, 35);
+    }];
+}
 
+- (void)handleOtherError {
+    NSLog(@"Other Error");
+}
+
+-(void)hideNetworkErrorStatusBar {
+    [UIView animateWithDuration:0.25 animations:^{
+        self.networkErrorView.frame = CGRectMake(0, -35, 320, 35);
+    }];
 }
 
 #pragma mark - Table Methods

@@ -8,23 +8,35 @@
 
 #import "MoviesViewController.h"
 #import "MovieCell.h"
+#import "UIImageView+AFNetworking.h"
+#import "MovieDetailViewController.h"
+#import "SVProgressHUD.h"
 
 @interface MoviesViewController () <UITableViewDelegate, UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSArray *movies;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 @end
 
 @implementation MoviesViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"MovieCell" bundle:nil] forCellReuseIdentifier:@"MovieCell"];
-    
     self.tableView.rowHeight = 100;
+
+    self.title = @"Movies";
+
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"MovieCell" bundle:nil] forCellReuseIdentifier:@"MovieCell"];
+    [self.refreshControl addTarget:self action:@selector(onRefresh) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
+
+    [self reloadMovies:(Boolean *)TRUE];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,20 +44,75 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)onRefresh {
+    [self reloadMovies:(Boolean *)FALSE];
+}
+
+- (void)reloadMovies:(Boolean *)hasProgressHUD{
+    NSString *apiKey = @"ed4tymgz3u9m72rq6tvg3y6p";
+    NSString *rottenTomatoesURLString = [NSString stringWithFormat:@"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=%@", apiKey];
+    NSURL *url = [NSURL URLWithString:rottenTomatoesURLString];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
+    if (hasProgressHUD) {
+        [SVProgressHUD showWithStatus:(NSString *)@"Loading..."];
+    }
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if (data) {
+            NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            self.movies = responseDictionary[@"movies"];
+            [self.tableView reloadData];
+        } else {
+            [self handleError];
+        }
+        if(hasProgressHUD) {
+            [SVProgressHUD dismiss];
+        } else {
+            // No need to dismiss
+        }
+        [self.refreshControl endRefreshing];
+    }];
+    //[SVProgressHUD dismiss];
+}
+
+- (void)handleError {
+
+}
+
 #pragma mark - Table Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 100;
+    return self.movies.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
     
-    cell.titleLabel.text = @"American Sniper";
-    cell.synopsisLabel.text = @"A War Movie";
-
+    NSDictionary *movie = self.movies[indexPath.row];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"y-LL-d"];
+    NSDate *releaseDate = [dateFormatter dateFromString:movie[@"release_dates"][@"theater"]];
+    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.titleLabel.text = movie[@"title"];
+    cell.runtimeLabel.text = [NSString stringWithFormat:@"%@ min", movie[@"runtime"]];
+    [dateFormatter setDateFormat:@"ccc, MMM d, y"];
+    cell.releaseDateLabel.text = [dateFormatter stringFromDate:releaseDate];
+    cell.criticsRatingLabel.text = [NSString stringWithFormat:@"%@%%", movie[@"ratings"][@"critics_score"]];
+    cell.audienceRatingLabel.text = [NSString stringWithFormat:@"%@%% ", movie[@"ratings"][@"audience_score"]];
+    NSString *url = [movie valueForKeyPath:@"posters.thumbnail"];
+    [cell.posterView setImageWithURL:[NSURL URLWithString:url]];
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    MovieDetailViewController *vc = [[MovieDetailViewController alloc] init];
+    vc.movie = self.movies[indexPath.row];
+    [self.navigationController pushViewController:vc animated:YES];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+
 
 /*
 #pragma mark - Navigation

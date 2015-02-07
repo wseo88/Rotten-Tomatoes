@@ -21,7 +21,9 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     MoviesViewController *vc = [[MoviesViewController alloc] init];
-    self.window.rootViewController = vc;
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
+
+    self.window.rootViewController = nvc;
     
     [self.window makeKeyAndVisible];
     return YES;

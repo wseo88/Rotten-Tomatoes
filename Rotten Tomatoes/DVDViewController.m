@@ -26,9 +26,11 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.movieSearchBar.delegate = self;
     self.tableView.rowHeight = 100;
     
     self.title = @"DVD";
+    self.networkErrorImageView.image = [UIImage imageNamed:@"warning_icon.png"];
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     
@@ -81,7 +83,7 @@
 
 - (void)handleNetworkError {
     [UIView animateWithDuration:0.25 animations:^{
-        self.networkErrorView.frame = CGRectMake(0,[UIApplication sharedApplication].statusBarFrame.size.height + self.navigationController.navigationBar.frame.size.height, 320, 35);
+        self.networkErrorView.frame = CGRectMake(0,[UIApplication sharedApplication].statusBarFrame.size.height + self.navigationController.navigationBar.frame.size.height, 320, 44);
     }];
 }
 
@@ -91,7 +93,7 @@
 
 -(void)hideNetworkErrorStatusBar {
     [UIView animateWithDuration:0.25 animations:^{
-        self.networkErrorView.frame = CGRectMake(0, -35, 320, 35);
+        self.networkErrorView.frame = CGRectMake(0, 0, 320, 44);
     }];
 }
 
@@ -125,6 +127,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     MovieDetailViewController *vc = [[MovieDetailViewController alloc] init];
     vc.movie = self.displayedMovies[indexPath.row];
+    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

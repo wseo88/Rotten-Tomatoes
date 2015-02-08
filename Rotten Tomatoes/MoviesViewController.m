@@ -27,19 +27,17 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.movieSearchBar.delegate = self;
     self.tableView.rowHeight = 100;
-    
-    //self.moviesSearchBar.delegate = self;
-    
+
     self.title = @"Box Office";
+    self.networkErrorImageView.image = [UIImage imageNamed:@"warning_icon.png"];
 
     self.refreshControl = [[UIRefreshControl alloc] init];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"MovieCell" bundle:nil] forCellReuseIdentifier:@"MovieCell"];
     [self.refreshControl addTarget:self action:@selector(onRefresh) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:1];
-
-    //[self.navigationController.navigationBar insertSubview:self.moviesSearchBar aboveSubview:self.tableView];
     
     [self reloadMovies:(Boolean *)TRUE];
 }
@@ -86,7 +84,7 @@
 
 - (void)handleNetworkError {
     [UIView animateWithDuration:0.25 animations:^{
-        self.networkErrorView.frame = CGRectMake(0,[UIApplication sharedApplication].statusBarFrame.size.height + self.navigationController.navigationBar.frame.size.height, 320, 35);
+        self.networkErrorView.frame = CGRectMake(0,[UIApplication sharedApplication].statusBarFrame.size.height + self.navigationController.navigationBar.frame.size.height, 320, 44);
     }];
 }
 
@@ -96,7 +94,7 @@
 
 -(void)hideNetworkErrorStatusBar {
     [UIView animateWithDuration:0.25 animations:^{
-        self.networkErrorView.frame = CGRectMake(0, -35, 320, 35);
+        self.networkErrorView.frame = CGRectMake(0, 0, 320, 44);
     }];
 }
 

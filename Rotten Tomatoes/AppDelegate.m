@@ -20,8 +20,6 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-
-
     
     MoviesViewController *moviesVC = [[MoviesViewController alloc] init];
     DVDViewController *dvdVC = [[DVDViewController alloc] init];
@@ -38,7 +36,7 @@
     [dvdNVC.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0 green:0.4 blue:0.8 alpha:13]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
     
     [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
     [[UITabBar appearance] setBarTintColor:[UIColor blackColor]];

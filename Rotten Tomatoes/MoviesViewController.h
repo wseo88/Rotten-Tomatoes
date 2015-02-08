@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface MoviesViewController : UIViewController
-@property (strong, nonatomic) IBOutlet UIView *networkErrorView;
+@property (weak, nonatomic) IBOutlet UIView *networkErrorView;
+@property (weak, nonatomic) IBOutlet UIImageView *networkErrorImageView;
+@property (weak, nonatomic) IBOutlet UISearchBar *movieSearchBar;
 @end

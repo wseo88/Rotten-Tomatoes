@@ -11,7 +11,7 @@ Time spent: `<Number of hours spent>`
 - [X] User can view a list of movies from Rotten Tomatoes. Poster images must be loading asynchronously.
 - [X] User can view movie details by tapping on a cell.
 - [X] User sees loading state while waiting for movies API.
-- [X] User sees error message when there's a networking error: (http://imgur.com/N2XHP1y)
+- [X] User sees error message when there's a networking error: (http://i.imgur.com/N2XHP1y.png)
 - [X] User can pull to refresh the movie list.
 
 #### Optional

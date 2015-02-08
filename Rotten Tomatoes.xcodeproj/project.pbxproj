@@ -108,7 +108,6 @@
 		142CC11C1A808273008AE8E3 /* Rotten Tomatoes */ = {
 			isa = PBXGroup;
 			children = (
-				1464D4B91A86076A00722ED1 /* Static */,
 				142CC1491A82AA20008AE8E3 /* Views */,
 				142CC1481A81722B008AE8E3 /* View Controllers */,
 				142CC1211A808273008AE8E3 /* AppDelegate.h */,
@@ -179,13 +178,6 @@
 				14428BBD1A86F2EF00C928E9 /* movie_icon@2x.png */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
-		};
-		1464D4B91A86076A00722ED1 /* Static */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Static;
 			sourceTree = "<group>";
 		};
 		913779697C5EBF77D90FD30F /* Frameworks */ = {

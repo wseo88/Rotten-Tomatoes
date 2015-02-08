@@ -23,12 +23,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setNeedsStatusBarAppearanceUpdate];
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.rowHeight = 100;
     
-    self.moviesSearchBar.delegate = self;
+    //self.moviesSearchBar.delegate = self;
     
     self.title = @"Box Office";
 
@@ -129,6 +130,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     MovieDetailViewController *vc = [[MovieDetailViewController alloc] init];
     vc.movie = self.displayedMovies[indexPath.row];
+    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

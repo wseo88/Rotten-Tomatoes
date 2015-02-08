@@ -6,7 +6,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MoviesViewController">
             <connections>
-                <outlet property="moviesSearchBar" destination="fgq-if-lmo" id="cMF-v7-PoQ"/>
                 <outlet property="networkErrorView" destination="bQf-Sf-Dz8" id="aSb-cN-mqp"/>
                 <outlet property="tableView" destination="FAs-bu-2t2" id="vJa-sH-Hrg"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -37,11 +36,6 @@
                     </subviews>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
-                <searchBar contentMode="redraw" id="fgq-if-lmo">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
-                    <textInputTraits key="textInputTraits"/>
-                </searchBar>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <point key="canvasLocation" x="149" y="475"/>

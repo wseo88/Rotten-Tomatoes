@@ -10,5 +10,4 @@
 
 @interface MoviesViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIView *networkErrorView;
-@property (strong, nonatomic) UISearchBar *moviesSearchBar;
 @end

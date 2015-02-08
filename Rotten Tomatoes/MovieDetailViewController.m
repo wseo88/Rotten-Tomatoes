@@ -22,7 +22,7 @@
     [self.scrollView setScrollEnabled:YES];
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleScrollViewTapped)];
     [self.scrollView addGestureRecognizer:singleTap];
-    self.scrollView.frame = CGRectMake(0, 284, 320, 284);
+    self.scrollView.frame = CGRectMake(0, 320, 320, 284);
     self.detailsScrollViewExpanded = false;
     [self updateMovieDetail];
 }
@@ -33,9 +33,7 @@
 }
 
 - (void)updateMovieDetail {
-    NSString *posterUrl = [self.movie valueForKeyPath:@"posters.thumbnail"];
-    [self.posterView setImageWithURL:[NSURL URLWithString:posterUrl]];
-    [self enhanceMoviePoster:posterUrl];
+    [self setAndEnhanceMoviePoster];
 
     self.titleLabel.text = [NSString stringWithFormat:@"%@ (%@)", self.movie[@"title"], self.movie[@"mpaa_rating"]];
     self.criticScoreLabel.text =[NSString stringWithFormat:@"%@%%", self.movie[@"ratings"][@"critics_score"]];
@@ -55,9 +53,15 @@
     self.scrollView.contentSize = CGSizeMake(320, 213 + self.synopsisLabel.frame.size.height);
 }
 
-- (void)enhanceMoviePoster:(NSString *)posterUrl {
-    NSString *enhancedPosterUrl = [posterUrl stringByReplacingOccurrencesOfString:@"_tmb" withString:@"_ori"];
-    [self.posterView setImageWithURL:[NSURL URLWithString:enhancedPosterUrl]];
+- (void)setAndEnhanceMoviePoster {
+    NSString *placeholderURLString = [self.movie valueForKeyPath:@"posters.thumbnail"];
+    NSURL  *placeholderUrl = [NSURL URLWithString:placeholderURLString];
+    NSData *placeholderUrlData = [NSData dataWithContentsOfURL:placeholderUrl];
+    UIImage *placeholderImage=[UIImage imageWithData:placeholderUrlData];
+    
+     NSString *detailedPosterURLString = [self.movie valueForKeyPath:@"posters.detailed"];
+    NSString *detailedPosterUrl = [detailedPosterURLString stringByReplacingOccurrencesOfString:@"_tmb" withString:@"_ori"];
+    [self.posterView setImageWithURL:[NSURL URLWithString:detailedPosterUrl] placeholderImage:placeholderImage];
 }
 
 - (void)setRatingIcons:(NSString *)criticsScore audienceScore:(NSString *)audienceScore {
@@ -76,7 +80,7 @@
 -(void)handleScrollViewTapped {
     if (self.detailsScrollViewExpanded) {
         [UIView animateWithDuration:0.25 animations:^{
-            self.scrollView.frame = CGRectMake(0, 284, 320, 284);
+            self.scrollView.frame = CGRectMake(0, 320, 320, 284);
         }];
         self.detailsScrollViewExpanded = false;
     } else {

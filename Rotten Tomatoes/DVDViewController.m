@@ -137,6 +137,11 @@
             }
         failure:nil
     ];
+    
+    UIView *bgColorView = [[UIView alloc] init];
+    bgColorView.backgroundColor = [UIColor colorWithRed:0.8 green:0.878 blue:0.957 alpha:1];
+    [cell setSelectedBackgroundView:bgColorView];
+
     return cell;
 }
 

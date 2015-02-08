@@ -120,9 +120,24 @@
     cell.releaseDateLabel.text = [dateFormatter stringFromDate:releaseDate];
     cell.criticsRatingLabel.text = [NSString stringWithFormat:@"%@%%", movie[@"ratings"][@"critics_score"]];
     cell.audienceRatingLabel.text = [NSString stringWithFormat:@"%@%% ", movie[@"ratings"][@"audience_score"]];
+
     NSString *url = [movie valueForKeyPath:@"posters.thumbnail"];
     [cell.posterView setImageWithURL:[NSURL URLWithString:url]];
+    [cell.posterView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]] placeholderImage: nil
+        success:^(NSURLRequest *request , NSHTTPURLResponse *response , UIImage *image ){
+            if (request) {
+                [UIView transitionWithView:cell.posterView
+                                  duration:0.5f
+                                   options:UIViewAnimationOptionTransitionCrossDissolve
+                                animations:^{
+                                    [cell.posterView setImage:image];
+                                } completion:nil];
+            }
+        }
+        failure:nil
+    ];
     return cell;
+
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -144,7 +159,6 @@
     }
     [self.tableView reloadData];
 }
-
 
 /*
 #pragma mark - Navigation

@@ -10,7 +10,8 @@
 #import "UIImageView+AFNetworking.h"
 
 @interface MovieDetailViewController () <UIScrollViewDelegate>
-
+@property (nonatomic, assign) int contentHeight;
+@property (nonatomic, assign) bool detailsScrollViewExpanded;
 @end
 
 @implementation MovieDetailViewController
@@ -19,6 +20,10 @@
     [super viewDidLoad];
     self.scrollView.delegate = self;
     [self.scrollView setScrollEnabled:YES];
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleScrollViewTapped)];
+    [self.scrollView addGestureRecognizer:singleTap];
+    self.scrollView.frame = CGRectMake(0, 284, 320, 284);
+    self.detailsScrollViewExpanded = false;
     [self updateMovieDetail];
 }
 
@@ -45,8 +50,8 @@
 
     self.synopsisLabel.text = [NSString stringWithFormat:@"Synopsis: %@", self.movie[@"synopsis"]];
     [self.synopsisLabel sizeToFit];
-    self.scrollView.frame = CGRectMake(0, 284, 320, 284);
-    self.scrollView.contentSize = CGSizeMake(320, 568);
+
+    self.scrollView.contentSize = CGSizeMake(320, 213 + self.synopsisLabel.frame.size.height);
 }
 
 - (void)enhanceMoviePoster:(NSString *)posterUrl {
@@ -54,18 +59,18 @@
     [self.posterView setImageWithURL:[NSURL URLWithString:enhancedPosterUrl]];
 }
 
--(void)scrollViewDidScroll:(UIScrollView*)scrollView{
-    if (scrollView.contentOffset.y <= 0) {
+-(void)handleScrollViewTapped {
+    if (self.detailsScrollViewExpanded) {
         [UIView animateWithDuration:0.25 animations:^{
-            scrollView.frame = CGRectMake(0, 284, 320, 284);
+            self.scrollView.frame = CGRectMake(0, 284, 320, 284);
         }];
+        self.detailsScrollViewExpanded = false;
+    } else {
+        [UIView animateWithDuration:0.25 animations:^{
+            self.scrollView.frame = CGRectMake(0, 64, 320, 510);
+        }];
+        self.detailsScrollViewExpanded = true;
     }
-}
-
--(void)scrollViewWillBeginDragging:(UIScrollView*)scrollView{
-    [UIView animateWithDuration:0.25 animations:^{
-        scrollView.frame = CGRectMake(0, 142, 320, 426);
-    }];
 }
 
 /*

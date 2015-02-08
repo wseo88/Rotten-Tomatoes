@@ -1,25 +1,25 @@
 //
-//  MoviesViewController.m
+//  DVDViewController.m
 //  Rotten Tomatoes
 //
-//  Created by William Seo on 2/3/15.
+//  Created by William Seo on 2/7/15.
 //  Copyright (c) 2015 William Seo. All rights reserved.
 //
 
-#import "MoviesViewController.h"
+#import "DVDViewController.h"
 #import "MovieCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "MovieDetailViewController.h"
 #import "SVProgressHUD.h"
 
-@interface MoviesViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
+@interface DVDViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *movies;
 @property (nonatomic, strong) NSArray *displayedMovies;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @end
 
-@implementation MoviesViewController
+@implementation DVDViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,17 +28,13 @@
     self.tableView.delegate = self;
     self.tableView.rowHeight = 100;
     
-    self.moviesSearchBar.delegate = self;
+    self.title = @"DVD";
     
-    self.title = @"Box Office";
-
     self.refreshControl = [[UIRefreshControl alloc] init];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"MovieCell" bundle:nil] forCellReuseIdentifier:@"MovieCell"];
     [self.refreshControl addTarget:self action:@selector(onRefresh) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:1];
-
-    //[self.navigationController.navigationBar insertSubview:self.moviesSearchBar aboveSubview:self.tableView];
     
     [self reloadMovies:(Boolean *)TRUE];
 }
@@ -55,7 +51,7 @@
 - (void)reloadMovies:(Boolean *)hasProgressHUD{
     [self hideNetworkErrorStatusBar];
     NSString *apiKey = @"ed4tymgz3u9m72rq6tvg3y6p";
-    NSString *rottenTomatoesURLString = [NSString stringWithFormat:@"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=%@", apiKey];
+    NSString *rottenTomatoesURLString = [NSString stringWithFormat:@"http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/new_releases.json?apikey=%@", apiKey];
     NSURL *url = [NSURL URLWithString:rottenTomatoesURLString];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
     if (hasProgressHUD) {
@@ -144,7 +140,6 @@
     }
     [self.tableView reloadData];
 }
-
 
 /*
 #pragma mark - Navigation

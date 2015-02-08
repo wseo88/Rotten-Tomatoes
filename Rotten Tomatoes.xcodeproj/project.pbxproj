@@ -18,6 +18,10 @@
 		142CC14E1A82AA3B008AE8E3 /* MovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142CC14C1A82AA3B008AE8E3 /* MovieCell.xib */; };
 		142CC1521A82CB5D008AE8E3 /* MovieDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 142CC1501A82CB5D008AE8E3 /* MovieDetailViewController.m */; };
 		142CC1531A82CB5D008AE8E3 /* MovieDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142CC1511A82CB5D008AE8E3 /* MovieDetailViewController.xib */; };
+		14428BBE1A86F2EF00C928E9 /* dvd_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14428BBC1A86F2EF00C928E9 /* dvd_icon@2x.png */; };
+		14428BBF1A86F2EF00C928E9 /* movie_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14428BBD1A86F2EF00C928E9 /* movie_icon@2x.png */; };
+		146941591A86EC05009C6615 /* DVDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 146941571A86EC05009C6615 /* DVDViewController.m */; };
+		1469415A1A86EC05009C6615 /* DVDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 146941581A86EC05009C6615 /* DVDViewController.xib */; };
 		9C801BF68887CA1FEE389BAE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED7A71027D7166C189899AF /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +55,11 @@
 		142CC14F1A82CB5D008AE8E3 /* MovieDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieDetailViewController.h; sourceTree = "<group>"; };
 		142CC1501A82CB5D008AE8E3 /* MovieDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieDetailViewController.m; sourceTree = "<group>"; };
 		142CC1511A82CB5D008AE8E3 /* MovieDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieDetailViewController.xib; sourceTree = "<group>"; };
+		14428BBC1A86F2EF00C928E9 /* dvd_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dvd_icon@2x.png"; sourceTree = "<group>"; };
+		14428BBD1A86F2EF00C928E9 /* movie_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "movie_icon@2x.png"; sourceTree = "<group>"; };
+		146941561A86EC05009C6615 /* DVDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVDViewController.h; sourceTree = "<group>"; };
+		146941571A86EC05009C6615 /* DVDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVDViewController.m; sourceTree = "<group>"; };
+		146941581A86EC05009C6615 /* DVDViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DVDViewController.xib; sourceTree = "<group>"; };
 		21F8462A2D7A24D2C4652278 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		6ED7A71027D7166C189899AF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A22429739166B6D279076126 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -78,6 +87,7 @@
 		142CC1111A808272008AE8E3 = {
 			isa = PBXGroup;
 			children = (
+				14428BB51A86F0F800C928E9 /* Resources */,
 				142CC11C1A808273008AE8E3 /* Rotten Tomatoes */,
 				142CC1361A808273008AE8E3 /* Rotten TomatoesTests */,
 				142CC11B1A808273008AE8E3 /* Products */,
@@ -145,6 +155,9 @@
 				142CC14F1A82CB5D008AE8E3 /* MovieDetailViewController.h */,
 				142CC1501A82CB5D008AE8E3 /* MovieDetailViewController.m */,
 				142CC1511A82CB5D008AE8E3 /* MovieDetailViewController.xib */,
+				146941561A86EC05009C6615 /* DVDViewController.h */,
+				146941571A86EC05009C6615 /* DVDViewController.m */,
+				146941581A86EC05009C6615 /* DVDViewController.xib */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -157,6 +170,15 @@
 				142CC14C1A82AA3B008AE8E3 /* MovieCell.xib */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		14428BB51A86F0F800C928E9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				14428BBC1A86F2EF00C928E9 /* dvd_icon@2x.png */,
+				14428BBD1A86F2EF00C928E9 /* movie_icon@2x.png */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		1464D4B91A86076A00722ED1 /* Static */ = {
@@ -266,9 +288,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				142CC1531A82CB5D008AE8E3 /* MovieDetailViewController.xib in Resources */,
+				1469415A1A86EC05009C6615 /* DVDViewController.xib in Resources */,
 				142CC12E1A808273008AE8E3 /* LaunchScreen.xib in Resources */,
+				14428BBE1A86F2EF00C928E9 /* dvd_icon@2x.png in Resources */,
 				142CC1471A8171EE008AE8E3 /* MoviesViewController.xib in Resources */,
 				142CC14E1A82AA3B008AE8E3 /* MovieCell.xib in Resources */,
+				14428BBF1A86F2EF00C928E9 /* movie_icon@2x.png in Resources */,
 				142CC12B1A808273008AE8E3 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -325,6 +350,7 @@
 				142CC1521A82CB5D008AE8E3 /* MovieDetailViewController.m in Sources */,
 				142CC14D1A82AA3B008AE8E3 /* MovieCell.m in Sources */,
 				142CC1201A808273008AE8E3 /* main.m in Sources */,
+				146941591A86EC05009C6615 /* DVDViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

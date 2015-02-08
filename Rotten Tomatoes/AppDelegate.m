@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MoviesViewController.h"
+#import "DVDViewController.h"
 
 @interface AppDelegate ()
 
@@ -20,10 +21,27 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    MoviesViewController *vc = [[MoviesViewController alloc] init];
-    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
+    MoviesViewController *moviesVC = [[MoviesViewController alloc] init];
+    DVDViewController *dvdVC = [[DVDViewController alloc] init];
+    
+    UINavigationController *moviesNVC = [[UINavigationController alloc] initWithRootViewController:moviesVC];
+    UINavigationController *dvdNVC = [[UINavigationController alloc] initWithRootViewController:dvdVC];
+    
+    moviesNVC.tabBarItem.title = @"Movie";
+    dvdNVC.tabBarItem.title = @"DVD";
+    
+    moviesNVC.tabBarItem.image = [UIImage imageNamed:@"movie_icon.png"];
+    dvdNVC.tabBarItem.image = [UIImage imageNamed:@"dvd_icon.png"];
+    
+    
+    UITabBarController *tbc = [[UITabBarController alloc] init];
 
-    self.window.rootViewController = nvc;
+    NSArray* controllers = [NSArray arrayWithObjects:moviesNVC, dvdNVC, nil];
+    tbc.viewControllers = controllers;
+    
+    self.window.backgroundColor = [UIColor whiteColor];
+    
+    self.window.rootViewController = tbc;
     
     [self.window makeKeyAndVisible];
     return YES;

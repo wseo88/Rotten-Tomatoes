@@ -2,7 +2,7 @@
 
 This is a movies app displaying box office and top rental DVDs using the [Rotten Tomatoes API](http://developer.rottentomatoes.com/docs/read/JSON).
 
-Time spent: `<Number of hours spent>`
+Time spent: 10 hours
 
 ### Features
 
@@ -25,8 +25,12 @@ Time spent: `<Number of hours spent>`
 
 ### Walkthrough
 
+![Video Walkthrough](rotten_tomato_walkthrough.gif)
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 Credits
 ---------
 * [Rotten Tomatoes API](http://developer.rottentomatoes.com/docs/read/JSON)
-* [AFNetworking](https://github.com/AFNetworking/AFNetworking
+* [AFNetworking](https://github.com/AFNetworking/AFNetworking)
+* [SVProgressHUD](http://samvermette.com/199)

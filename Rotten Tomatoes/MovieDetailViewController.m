@@ -40,6 +40,7 @@
     self.titleLabel.text = [NSString stringWithFormat:@"%@ (%@)", self.movie[@"title"], self.movie[@"mpaa_rating"]];
     self.criticScoreLabel.text =[NSString stringWithFormat:@"%@%%", self.movie[@"ratings"][@"critics_score"]];
     self.audienceScoreLabel.text =[NSString stringWithFormat:@"%@%%", self.movie[@"ratings"][@"audience_score"]];
+    [self setRatingIcons:self.criticScoreLabel.text audienceScore:self.audienceScoreLabel.text];
     self.runtimeLabel.text = [NSString stringWithFormat:@"%@ min", self.movie[@"runtime"]];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -57,6 +58,19 @@
 - (void)enhanceMoviePoster:(NSString *)posterUrl {
     NSString *enhancedPosterUrl = [posterUrl stringByReplacingOccurrencesOfString:@"_tmb" withString:@"_ori"];
     [self.posterView setImageWithURL:[NSURL URLWithString:enhancedPosterUrl]];
+}
+
+- (void)setRatingIcons:(NSString *)criticsScore audienceScore:(NSString *)audienceScore {
+    if ([criticsScore intValue] >= 60) {
+        self.criticRatingImageView.image = [UIImage imageNamed:@"like_icon.png"];
+    } else {
+        self.criticRatingImageView.image = [UIImage imageNamed:@"dislike_icon.png"];
+    }
+    if ([audienceScore intValue] >= 60) {
+        self.audienceRatingImageView.image = [UIImage imageNamed:@"like_icon.png"];
+    } else {
+        self.audienceRatingImageView.image = [UIImage imageNamed:@"dislike_icon.png"];
+    }
 }
 
 -(void)handleScrollViewTapped {

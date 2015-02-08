@@ -21,6 +21,8 @@
 		14428BBE1A86F2EF00C928E9 /* dvd_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14428BBC1A86F2EF00C928E9 /* dvd_icon@2x.png */; };
 		14428BBF1A86F2EF00C928E9 /* movie_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14428BBD1A86F2EF00C928E9 /* movie_icon@2x.png */; };
 		14428BC11A87275300C928E9 /* warning_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 14428BC01A87275300C928E9 /* warning_icon.png */; };
+		14428BC31A87434500C928E9 /* dislike_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 14428BC21A87434500C928E9 /* dislike_icon.png */; };
+		14428BC71A87481400C928E9 /* like_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 14428BC61A87481400C928E9 /* like_icon.png */; };
 		146941591A86EC05009C6615 /* DVDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 146941571A86EC05009C6615 /* DVDViewController.m */; };
 		1469415A1A86EC05009C6615 /* DVDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 146941581A86EC05009C6615 /* DVDViewController.xib */; };
 		9C801BF68887CA1FEE389BAE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED7A71027D7166C189899AF /* libPods.a */; };
@@ -59,6 +61,8 @@
 		14428BBC1A86F2EF00C928E9 /* dvd_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dvd_icon@2x.png"; sourceTree = "<group>"; };
 		14428BBD1A86F2EF00C928E9 /* movie_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "movie_icon@2x.png"; sourceTree = "<group>"; };
 		14428BC01A87275300C928E9 /* warning_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = warning_icon.png; sourceTree = "<group>"; };
+		14428BC21A87434500C928E9 /* dislike_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dislike_icon.png; sourceTree = "<group>"; };
+		14428BC61A87481400C928E9 /* like_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = like_icon.png; sourceTree = "<group>"; };
 		146941561A86EC05009C6615 /* DVDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVDViewController.h; sourceTree = "<group>"; };
 		146941571A86EC05009C6615 /* DVDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVDViewController.m; sourceTree = "<group>"; };
 		146941581A86EC05009C6615 /* DVDViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DVDViewController.xib; sourceTree = "<group>"; };
@@ -176,6 +180,8 @@
 		14428BB51A86F0F800C928E9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				14428BC61A87481400C928E9 /* like_icon.png */,
+				14428BC21A87434500C928E9 /* dislike_icon.png */,
 				14428BC01A87275300C928E9 /* warning_icon.png */,
 				14428BBC1A86F2EF00C928E9 /* dvd_icon@2x.png */,
 				14428BBD1A86F2EF00C928E9 /* movie_icon@2x.png */,
@@ -288,7 +294,9 @@
 				142CC12E1A808273008AE8E3 /* LaunchScreen.xib in Resources */,
 				14428BBE1A86F2EF00C928E9 /* dvd_icon@2x.png in Resources */,
 				142CC1471A8171EE008AE8E3 /* MoviesViewController.xib in Resources */,
+				14428BC31A87434500C928E9 /* dislike_icon.png in Resources */,
 				142CC14E1A82AA3B008AE8E3 /* MovieCell.xib in Resources */,
+				14428BC71A87481400C928E9 /* like_icon.png in Resources */,
 				14428BBF1A86F2EF00C928E9 /* movie_icon@2x.png in Resources */,
 				142CC12B1A808273008AE8E3 /* Images.xcassets in Resources */,
 			);

@@ -119,22 +119,38 @@
     cell.releaseDateLabel.text = [dateFormatter stringFromDate:releaseDate];
     cell.criticsRatingLabel.text = [NSString stringWithFormat:@"%@%%", movie[@"ratings"][@"critics_score"]];
     cell.audienceRatingLabel.text = [NSString stringWithFormat:@"%@%% ", movie[@"ratings"][@"audience_score"]];
+
+    [self setRatingIcons:cell criticsScore:cell.criticsRatingLabel.text audienceScore:cell.audienceRatingLabel.text];
+
     NSString *url = [movie valueForKeyPath:@"posters.thumbnail"];
     [cell.posterView setImageWithURL:[NSURL URLWithString:url]];
     [cell.posterView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]] placeholderImage: nil
-                                    success:^(NSURLRequest *request , NSHTTPURLResponse *response , UIImage *image ){
-                                        if (request) {
-                                            [UIView transitionWithView:cell.posterView
-                                                              duration:0.5f
-                                                               options:UIViewAnimationOptionTransitionCrossDissolve
-                                                            animations:^{
-                                                                [cell.posterView setImage:image];
-                                                            } completion:nil];
-                                        }
-                                    }
-                                    failure:nil
-     ];
+        success:^(NSURLRequest *request , NSHTTPURLResponse *response , UIImage *image ){
+            if (request) {
+                [UIView transitionWithView:cell.posterView
+                                  duration:0.5f
+                                   options:UIViewAnimationOptionTransitionCrossDissolve
+                                animations:^{
+                                    [cell.posterView setImage:image];
+                                } completion:nil];
+                }
+            }
+        failure:nil
+    ];
     return cell;
+}
+
+- (void)setRatingIcons:(MovieCell *)cell criticsScore:(NSString *)criticsScore audienceScore:(NSString *)audienceScore {
+    if ([criticsScore intValue] >= 60) {
+        cell.criticsRatingImageView.image = [UIImage imageNamed:@"like_icon.png"];
+    } else {
+        cell.criticsRatingImageView.image = [UIImage imageNamed:@"dislike_icon.png"];
+    }
+    if ([audienceScore intValue] >= 60) {
+        cell.audienceRatingImageView.image = [UIImage imageNamed:@"like_icon.png"];
+    } else {
+        cell.audienceRatingImageView.image = [UIImage imageNamed:@"dislike_icon.png"];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

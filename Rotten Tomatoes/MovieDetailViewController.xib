@@ -6,7 +6,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MovieDetailViewController">
             <connections>
+                <outlet property="audienceRatingImageView" destination="pSc-Qb-Q8D" id="7wf-KK-bbq"/>
                 <outlet property="audienceScoreLabel" destination="ugW-oJ-B7b" id="oqr-Lh-GoQ"/>
+                <outlet property="criticRatingImageView" destination="iIO-9d-3D1" id="K0y-Bg-jMe"/>
                 <outlet property="criticScoreLabel" destination="sRI-eC-EMl" id="aGH-XK-XCF"/>
                 <outlet property="posterView" destination="j2r-cb-yFR" id="kYF-GV-OdD"/>
                 <outlet property="releaseDateLabel" destination="p2y-hQ-H6w" id="US3-Sa-qjZ"/>
@@ -115,6 +117,14 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="iIO-9d-3D1">
+                            <rect key="frame" x="80" y="66" width="30" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="pSc-Qb-Q8D">
+                            <rect key="frame" x="232" y="66" width="30" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                 </scrollView>

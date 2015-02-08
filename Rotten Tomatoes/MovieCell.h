@@ -16,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *releaseDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *criticsRatingLabel;
 @property (weak, nonatomic) IBOutlet UILabel *audienceRatingLabel;
-
+@property (weak, nonatomic) IBOutlet UIImageView *criticsRatingImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *audienceRatingImageView;
 @end

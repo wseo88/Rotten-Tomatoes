@@ -19,4 +19,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *audienceScoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *runtimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *releaseDateLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *criticRatingImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *audienceRatingImageView;
 @end
